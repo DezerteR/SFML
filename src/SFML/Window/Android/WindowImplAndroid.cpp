@@ -90,10 +90,17 @@ WindowImplAndroid::~WindowImplAndroid()
 ////////////////////////////////////////////////////////////
 WindowHandle WindowImplAndroid::getSystemHandle() const
 {
+    static AndroidHandles handles;
     ActivityStates* states = getActivity(NULL);
     Lock lock(states->mutex);
 
-    return states->window;
+    // Update the static copies of the handles
+    // The Android build is limited to one window and always has one activity
+    handles.activity = states->activity;
+    handles.window = states->window;
+
+    // And return the pointer
+    return &handles;
 }
 
 

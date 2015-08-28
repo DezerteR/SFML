@@ -452,8 +452,9 @@ public:
     ////////////////////////////////////////////////////////////
     /// \brief Get the OS-specific handle of the window
     ///
-    /// The type of the returned handle is sf::WindowHandle,
-    /// which is a typedef to the handle type defined by the OS.
+    /// The actual type returned is \p sf::WindowHandle, which is a
+    /// typedef to the platform specific type.
+    ///
     /// You shouldn't need to use this function, unless you have
     /// very specific stuff to implement that SFML doesn't support,
     /// or implement a temporary workaround until a bug is fixed.

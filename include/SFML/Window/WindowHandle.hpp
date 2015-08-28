@@ -33,6 +33,10 @@
 // Windows' HWND is a typedef on struct HWND__*
 #if defined(SFML_SYSTEM_WINDOWS)
     struct HWND__;
+// Android uses structs to store meta information for the window and activity
+#elif defined(SFML_SYSTEM_ANDROID)
+    struct ANativeActivity;
+    struct ANativeWindow;
 #endif
 
 namespace sf
@@ -59,14 +63,26 @@ namespace sf
 
 #elif defined(SFML_SYSTEM_ANDROID)
 
-    // Window handle is ANativeWindow (void*) on Android
-    typedef void* WindowHandle;
+    /// Struct to store native window and activity handles (Android only)
+    struct AndroidHandles {
+        ANativeActivity *activity; ///< Android's Native Activity handle
+        ANativeWindow *window;     ///< Android's Native Window handle
+    };
+
+    // Window handle points to a struct containing ANativeActivity (void*) and ANativeWindow (void*) on Android
+    typedef AndroidHandles* WindowHandle;
 
 #elif defined(SFML_DOXYGEN)
 
     // Define typedef symbol so that Doxygen can attach some documentation to it
     typedef "platform–specific" WindowHandle;
 
+    /// Struct to store native window and activity handles (Android only)
+    struct AndroidHandles {
+        ANativeActivity *activity; ///< Android's Native Activity handle
+        ANativeWindow *window;     ///< Android's Native Window handle
+    };
+    
 #endif
 
 } // namespace sf
@@ -87,7 +103,7 @@ namespace sf
 /// Linux/FreeBSD   | \p %Window
 /// Max OS X        | either \p NSWindow* or \p NSView* disguised as \p void*
 /// iOS             | \p UIWindow*
-/// Android         | Yet to be defined
+/// Android         | \p sf::AndroidHandles*
 ///
 /// \par Mac OS X Specification
 ///
