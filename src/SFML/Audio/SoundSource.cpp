@@ -63,6 +63,22 @@ SoundSource::~SoundSource()
 
 
 ////////////////////////////////////////////////////////////
+void SoundSource::setVelocity(float x, float y, float z)
+{
+    alCheck(alSource3f(m_source, AL_VELOCITY, x, y, z));
+}
+
+
+////////////////////////////////////////////////////////////
+Vector3f SoundSource::getVelocity() const
+{
+    Vector3f velocity;
+    alCheck(alGetSource3f(m_source, AL_VELOCITY, &velocity.x, &velocity.y, &velocity.z));
+
+    return velocity;
+}
+
+////////////////////////////////////////////////////////////
 void SoundSource::setPitch(float pitch)
 {
     alCheck(alSourcef(m_source, AL_PITCH, pitch));
