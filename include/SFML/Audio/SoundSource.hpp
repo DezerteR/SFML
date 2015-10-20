@@ -67,7 +67,47 @@ public:
     ///
     ////////////////////////////////////////////////////////////
     virtual ~SoundSource();
+    
+    ////////////////////////////////////////////////////////////
+    /// \brief Set the velocity of the sound
+    ///
+    /// The velocity represents couses the doppler effect in 3D 
+    /// sound.
+    ///
+    /// \param x X part of velocity vector
+    /// \param y Y part of velocity vector
+    /// \param z Z part of velocity vector
+    ///
+    /// \see getVelocity
+    ///
+    ////////////////////////////////////////////////////////////
     void setVelocity(float x, float y, float z);
+    
+    ////////////////////////////////////////////////////////////
+    /// \brief Set the velocity of the sound
+    ///
+    /// The velocity represents couses the doppler effect in 3D 
+    /// sound.
+    ///
+    /// \param velocity New velocity vector to apply to the sound
+    ///
+    /// \see getVelocity
+    ///
+    ////////////////////////////////////////////////////////////
+    void setVelocity(Vector3f velocity);
+    
+    ////////////////////////////////////////////////////////////
+    /// \brief Get the velocity of the sound
+    ///
+    /// Returns velocity of sound
+    ///
+    /// \param velocity New velocity to apply to the sound
+    ///
+    /// \see setVelocity
+    ///
+    ////////////////////////////////////////////////////////////
+    Vector3f getVelocity() const;
+    
     ////////////////////////////////////////////////////////////
     /// \brief Set the pitch of the sound
     ///
